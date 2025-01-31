@@ -30,14 +30,12 @@ public:
             repr.erase(repE1);
         }
     }
-
     T find(T e) {
-        if (parent[e] == e) {
-            return e;
+        if (parent[e] != e) {
+            parent[e] = find(parent[e]);
         }
-        return parent[e] = find(parent[e]);
+        return parent[e];
     }
-
     int sizeOfSet(T e) {
         T rep = find(e);
         return repr[rep].first;
